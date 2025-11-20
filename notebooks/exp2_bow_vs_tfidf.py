@@ -26,12 +26,12 @@ warnings.filterwarnings("ignore")
 
 # ========================== CONFIGURATION ==========================
 CONFIG = {
-    "data_path": "notebooks/data.csv",
+    "data_path": "data.csv",
     "test_size": 0.2,
-    "mlflow_tracking_uri": "https://dagshub.com/vikashdas770/YT-Capstone-Project.mlflow",
-    "dagshub_repo_owner": "vikashdas770",
-    "dagshub_repo_name": "YT-Capstone-Project",
-    "experiment_name": "Bow vs TfIdf"
+    "mlflow_tracking_uri": "https://dagshub.com/Souritdev/Mlops-capstone-project.mlflow",
+    "dagshub_repo_owner": "Souritdev",
+    "dagshub_repo_name": "Mlops-capstone-project",
+    "experiment_name": "Bow vs TfIdf Algorithmic Experiment"
 }
 
 # ========================== SETUP MLflow & DAGSHUB ==========================
@@ -135,12 +135,8 @@ def train_and_evaluate(df):
                         }
                         mlflow.log_metrics(metrics)
 
-                        # Log model
-                        # mlflow.sklearn.log_model(model, "model")
-                        input_example = X_test[:5] if not scipy.sparse.issparse(X_test) else X_test[:5].toarray()
-                        mlflow.sklearn.log_model(model, "model", input_example=input_example)
+                        # Log the model
 
-                        # Print results for verification
                         print(f"\nAlgorithm: {algo_name}, Vectorizer: {vec_name}")
                         print(f"Metrics: {metrics}")
 
@@ -149,7 +145,6 @@ def train_and_evaluate(df):
                         mlflow.log_param("error", str(e))
 
 def log_model_params(algo_name, model):
-    """Logs hyperparameters of the trained model to MLflow."""
     params_to_log = {}
     if algo_name == 'LogisticRegression':
         params_to_log["C"] = model.C
