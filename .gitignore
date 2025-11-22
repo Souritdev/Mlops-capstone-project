@@ -209,4 +209,7 @@ __marimo__/
 #Custom files
 keys.txt
 projectflow.txt
-
+data/
+local_s3/
+notebooks/
+projectflow.txt/
