@@ -209,4 +209,5 @@ __marimo__/
 
 # custom files no need to track
 projectflow.txt
-
+data/
+notebooks/
